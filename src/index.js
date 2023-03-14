@@ -6,7 +6,9 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const RouteV1 = require(`./routes/route`); 
 
+// const RouteDefault = require('./app/routes/default/default-route');
 // defining the Express app
 const app = express();
 
@@ -31,6 +33,13 @@ app.use(morgan('combined'));
 app.get('/', (req, res) => {
   res.send(ads);
 });
+
+app.use('/api/expenses/ingress',
+   RouteV1);
+
+// app.use('/api/expenses/ingress',
+//   RouteV1,
+//   RouteDefault);
 
 // starting the server
 app.listen(3001, () => {
